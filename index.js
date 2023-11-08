@@ -45,8 +45,20 @@ async function run() {
         })
 
         app.get('/bookings', async (req, res) => {
-            const cursor = bookingCollection.find();
-            const result = await cursor.toArray();
+            let query = {};
+            if (req.query?.email) {
+                query = { receiverEmail: req.query.email }
+            }
+            const result = await bookingCollection.find(query).toArray();
+            res.send(result)
+        })
+
+        app.get('/pendings', async (req, res) => {
+            let query = {};
+            if (req.query?.name) {
+                query = { serviceProviderName: req.query.name }
+            }
+            const result = await bookingCollection.find(query).toArray();
             res.send(result)
         })
 
