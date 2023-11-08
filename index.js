@@ -43,7 +43,7 @@ async function run() {
             const result = await cursor.toArray();
             res.send(result)
         })
- 
+
         app.get('/bookings', async (req, res) => {
             const cursor = bookingCollection.find();
             const result = await cursor.toArray();
@@ -62,9 +62,23 @@ async function run() {
             const result = await serviceCollection.findOne(query);
             res.send(result)
         })
+        app.get('/my-services', async (req, res) => {
+            let query = {};
+            if (req.query?.email) {
+                query = { serviceProviderEmail: req.query.email }
+            }
+            const result = await serviceCollection.find(query).toArray();
+            res.send(result)
+        })
+        app.delete('/services/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) }
+            const result = await serviceCollection.deleteOne(query);
+            res.send(result)
+        })
 
         app.put('/services/:id', async (req, res) => {
-            const id = req.params._id;
+            const id = req.params.id;
             const filter = { _id: new ObjectId(id) };
             const options = { upsert: true };
             const updatedProduct = req.body;
