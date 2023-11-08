@@ -33,7 +33,7 @@ async function run() {
 
 
         app.post('/services', async (req, res) => {
-            const newProduct = req.body
+            const newProduct = req.body;
             const result = await serviceCollection.insertOne(newProduct);
             res.send(result);
         })
@@ -48,6 +48,12 @@ async function run() {
             const cursor = bookingCollection.find();
             const result = await cursor.toArray();
             res.send(result)
+        })
+
+        app.post('/bookings', async (req, res) => {
+            const newBooking = req.body;
+            const result = await bookingCollection.insertOne(newBooking);
+            res.send(result);
         })
 
         app.get('/services/:id', async (req, res) => {
