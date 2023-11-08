@@ -70,13 +70,13 @@ async function run() {
             const updatedProduct = req.body;
             const modProduct = {
                 $set: {
-                    serviceImage: updatedProduct.serviceImage,
-                    serviceName: updatedProduct.serviceName,
-                    serviceProviderName: updatedProduct.serviceProviderName,
-                    serviceProviderImage: updatedProduct.serviceProviderImage,
-                    servicePrice: updatedProduct.servicePrice,
-                    serviceArea: updatedProduct.serviceArea,
-                    serviceDescription: updatedProduct.serviceDescription
+                    serviceImage: updatedProduct.newServiceImage,
+                    serviceName: updatedProduct.newServiceName,
+                    serviceProviderName: updatedProduct.newServiceProviderName,
+                    serviceProviderImage: updatedProduct.newServiceProviderImage,
+                    servicePrice: updatedProduct.newServicePrice,
+                    serviceArea: updatedProduct.newServiceArea,
+                    serviceDescription: updatedProduct.newServiceDescription
                 }
             };
 
